@@ -14,16 +14,27 @@ export default function Home() {
   const runSimulation = async () => {
     const options = {
       method: "GET",
-      url: "https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd/history",
+      url: `${process.env.NEXT_PUBLIC_COINRANKING_URL}/coin/Qwsogvtv82FCd/history`,
       params: {
         referenceCurrencyUuid: "yhjMzLPhuIDl",
         timePeriod: "1y",
       },
       headers: {
-        "X-RapidAPI-Key": "979025566bmsh2cffc81f3b1dc28p1a86f5jsn1701c185b152",
-        "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
+        "x-access-token": process.env.NEXT_PUBLIC_COINRANKING_API,
       },
     };
+    // const options = {
+    //   method: "GET",
+    //   url: "https://coinranking1.p.rapidapi.com/coin/Qwsogvtv82FCd/history",
+    //   params: {
+    //     referenceCurrencyUuid: "yhjMzLPhuIDl",
+    //     timePeriod: "1y",
+    //   },
+    //   headers: {
+    //     "X-RapidAPI-Key": "979025566bmsh2cffc81f3b1dc28p1a86f5jsn1701c185b152",
+    //     "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
+    //   },
+    // };
     let priceHistoryArray;
     try {
       const response = await axios.request(options);
